@@ -1,0 +1,1 @@
+document.querySelector('#contactForm')?.addEventListener('submit',e=>{e.preventDefault();e.currentTarget.querySelector('.form-message').textContent='Thanks — your message has been sent.';e.currentTarget.reset()});

@@ -1,0 +1,1 @@
+document.querySelector('#showRegister')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('#register').classList.remove('hidden');document.querySelector('#register').scrollIntoView({behavior:'smooth'})});

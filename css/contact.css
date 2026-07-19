@@ -1,0 +1,2 @@
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;margin-top:45px}.contact form{background:#fff;padding:28px;border-radius:8px}.form-message{color:#19895d}@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:25px}}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;margin-top:45px}.contact form{background:#fff;padding:28px;border-radius:8px}.form-message{color:#19895d}@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:25px}}

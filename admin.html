@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CarePoint administration dashboard.">
+  <title>Admin dashboard | CarePoint</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+  <header class="admin-topbar">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt=""><span>CarePoint</span></a>
+    <div class="admin-actions"><button class="theme-toggle" type="button" id="adminThemeToggle">Dark</button><a href="index.html">View website</a><button class="admin-avatar" type="button" aria-label="Administrator profile">AD</button></div>
+  </header>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <p class="admin-label">ADMIN PORTAL</p>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a class="active" href="#overview"><span>▦</span> Overview</a>
+        <a href="#appointments"><span>◷</span> Appointments</a>
+        <a href="#doctors"><span>♙</span> Doctors</a>
+        <a href="#patients"><span>♧</span> Patients</a>
+      </nav>
+      <div class="admin-help"><strong>Need assistance?</strong><p>Contact system support for account and access help.</p><a href="contact.html">Contact support →</a></div>
+    </aside>
+    <main class="admin-content" id="overview">
+      <div class="admin-heading"><div><p class="eyebrow">ADMINISTRATION</p><h1>Good morning, Admin.</h1><p>Here’s what is happening at CarePoint today.</p></div><button class="button" type="button" id="addAppointment">+ Add appointment</button></div>
+      <section class="admin-stats" aria-label="Dashboard statistics"><article><span class="stat-icon blue">◷</span><div><small>Today’s appointments</small><strong id="todayAppointments">24</strong><em>+12% from yesterday</em></div></article><article><span class="stat-icon green">♧</span><div><small>Total patients</small><strong>1,284</strong><em>+18 this week</em></div></article><article><span class="stat-icon purple">♙</span><div><small>Active doctors</small><strong>18</strong><em>Across 9 specialties</em></div></article><article><span class="stat-icon orange">✓</span><div><small>Completion rate</small><strong>96%</strong><em>Last 30 days</em></div></article></section>
+      <section class="admin-panel" id="appointments"><div class="panel-heading"><div><p class="eyebrow">APPOINTMENTS</p><h2>Today’s schedule</h2></div><div class="table-tools"><input id="appointmentSearch" type="search" placeholder="Search patient or doctor"><select id="statusFilter"><option value="all">All statuses</option><option value="scheduled">Scheduled</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Patient</th><th>Doctor & specialty</th><th>Time</th><th>Status</th><th>Action</th></tr></thead><tbody id="appointmentRows"><tr data-status="scheduled"><td><strong>Riya Kulkarni</strong><small>riya.k@example.com</small></td><td><strong>Dr. Ananya Sharma</strong><small>General Medicine</small></td><td>09:30 AM</td><td><span class="admin-status scheduled">Scheduled</span></td><td><button class="row-action" type="button">Manage</button></td></tr><tr data-status="completed"><td><strong>Arjun Deshmukh</strong><small>arjun.d@example.com</small></td><td><strong>Dr. Rohan Mehta</strong><small>Cardiology</small></td><td>10:15 AM</td><td><span class="admin-status completed">Completed</span></td><td><button class="row-action" type="button">Manage</button></td></tr><tr data-status="scheduled"><td><strong>Meera Joshi</strong><small>meera.j@example.com</small></td><td><strong>Dr. Priya Nair</strong><small>Pediatrics</small></td><td>11:00 AM</td><td><span class="admin-status scheduled">Scheduled</span></td><td><button class="row-action" type="button">Manage</button></td></tr><tr data-status="cancelled"><td><strong>Vikram Patil</strong><small>vikram.p@example.com</small></td><td><strong>Dr. Ananya Sharma</strong><small>General Medicine</small></td><td>12:30 PM</td><td><span class="admin-status cancelled">Cancelled</span></td><td><button class="row-action" type="button">Manage</button></td></tr></tbody></table></div><p class="admin-message" id="adminMessage" aria-live="polite"></p></section>
+      <section class="admin-bottom"><article class="admin-panel" id="doctors"><div class="panel-heading"><div><p class="eyebrow">DOCTORS</p><h2>Specialist availability</h2></div><a href="index.html#specialists">View all →</a></div><div class="doctor-availability"><div><span class="online-dot"></span><div><strong>Dr. Ananya Sharma</strong><small>General Medicine</small></div><b>8 slots</b></div><div><span class="online-dot"></span><div><strong>Dr. Rohan Mehta</strong><small>Cardiology</small></div><b>5 slots</b></div><div><span class="online-dot offline"></span><div><strong>Dr. Priya Nair</strong><small>Pediatrics</small></div><b>Off duty</b></div></div></article><article class="admin-panel" id="patients"><p class="eyebrow">PATIENT INSIGHT</p><h2>New patient registrations</h2><div class="registration-number">18 <span>this week</span></div><div class="bar-chart" aria-label="Registration chart"><i style="height:42%"></i><i style="height:64%"></i><i style="height:48%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:96%"></i><i style="height:58%"></i></div><div class="chart-labels"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div></article></section>
+    </main>
+  </div>
+  <script src="js/admin.js"></script>
+</body>
+</html>

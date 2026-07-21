@@ -267,7 +267,7 @@ height:280px;
 object-fit:cover;
 object-position:center top;
 }
-.doctor-card:nth-child(2) img { object-position:center 24%; }
+.doctor-card:nth-child(2) img { object-position: center 18%; }
 .doctor-card div { padding:19px;
 }
 .doctor-card p { margin-bottom:3px;

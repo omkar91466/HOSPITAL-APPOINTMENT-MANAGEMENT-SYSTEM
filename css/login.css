@@ -1,5 +1,6 @@
 .auth-page { min-height:100vh;
 background:linear-gradient(135deg,#e7f5f4,#f6fbfb);
+font-family:Arial, Helvetica, sans-serif;
 }
 .auth-brand { position:absolute;
 top:28px;
@@ -55,14 +56,15 @@ color:#32525e;
 font-size:13px;
 font-weight:bold;
 }
-.auth-panel input { width:100%;
+.auth-panel input, .auth-panel select { width:100%;
 padding:12px;
 border:1px solid #cddcde;
 border-radius:6px;
 outline:none;
 font:inherit;
+background:#fff;
 }
-.auth-panel input:focus { border-color:var(--brand);
+.auth-panel input:focus, .auth-panel select:focus { border-color:var(--brand);
 box-shadow:0 0 0 3px #dff3f3;
 }
 .password-field { position:relative;

@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   const message = new URLSearchParams(location.search).get('message');
-  if (message) {
-    const status = document.querySelector('#loginPanel .form-status');
+  const status = document.querySelector('.form-status');
+  if (message && status) {
     status.className = 'form-status error';
     status.textContent = message;
   }
@@ -26,9 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.auth-panel form').forEach((form) => form.addEventListener('submit', (event) => {
     if (form.checkValidity()) return;
     event.preventDefault();
-    const status = form.querySelector('.form-status');
-    status.className = 'form-status error';
-    status.textContent = 'Please complete all required fields correctly.';
+    const statusElement = form.querySelector('.form-status');
+    if (statusElement) {
+      statusElement.className = 'form-status error';
+      statusElement.textContent = 'Please complete all required fields correctly.';
+    }
     form.reportValidity();
   }));
 });

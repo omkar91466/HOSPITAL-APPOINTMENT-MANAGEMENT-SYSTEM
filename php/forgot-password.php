@@ -1,5 +1,5 @@
 <?php
-/** Accepts reset requests without revealing whether an account exists. */
+/** Resets a user password directly when the account exists. */
 declare(strict_types=1);
 
 require __DIR__ . '/db.php';
@@ -9,13 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
-if (!$email) {
-    redirect_to('../forgot-password.html', 'Please enter a valid email address.');
+$newPassword = trim($_POST['password'] ?? '');
+$confirmPassword = trim($_POST['confirm_password'] ?? '');
+
+if (!$email || mb_strlen($newPassword) < 6 || $newPassword !== $confirmPassword) {
+    redirect_to('../forgot-password.html', 'Please enter a valid email and matching password with at least 6 characters.');
 }
 
-// Ready for future email-provider integration without exposing account existence.
 $statement = $pdo->prepare('SELECT id FROM users WHERE email = :email LIMIT 1');
 $statement->execute(['email' => $email]);
 
-redirect_to('../login.html', 'If an account exists for this email, password-reset instructions will be sent.');
+if ($statement->fetch()) {
+    $updateStatement = $pdo->prepare('UPDATE users SET password = :password WHERE email = :email');
+    $updateStatement->execute(['password' => password_hash($newPassword, PASSWORD_DEFAULT), 'email' => $email]);
+}
+
+redirect_to('../login.html', 'Your password has been updated. Please sign in with your new password.');
 ?>

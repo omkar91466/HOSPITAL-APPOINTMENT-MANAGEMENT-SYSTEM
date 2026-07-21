@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard | CarePoint</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/dashboard.css"></head><body><header><a class="brand" href="index.html"><span>✚</span> CarePoint</a><nav><a href="php/logout.php">Sign out</a></nav></header><main class="dashboard"><p class="eyebrow">PATIENT PORTAL</p><h1>Welcome back, <span id="patientName">Patient</span>.</h1><section class="booking"><div><h2>Book a new appointment</h2><p>Choose a specialist and a convenient time.</p></div><form action="php/appointment.php" method="post"><select name="doctor_id" required><option value="">Select a doctor</option><option value="1">Dr. Ananya Sharma — General Medicine</option><option value="2">Dr. Rohan Mehta — Cardiology</option><option value="3">Dr. Priya Nair — Pediatrics</option></select><input name="appointment_date" type="datetime-local" required><button class="button">Confirm appointment</button></form></section><section><h2>Your appointments</h2><div id="appointments" class="appointment-list"><p>No upcoming appointments yet.</p></div></section></main><script src="js/dashboard.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CarePoint patient dashboard.">
+<title>My care dashboard | CarePoint</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="index.html">
+<img src="images/logo.png" alt="">
+<span>CarePoint</span>
+</a>
+<nav class="dashboard-nav">
+<a href="index.html">Back to website</a>
+<a class="nav-login" href="php/logout.php">Sign out</a>
+</nav>
+</header>
+<main class="dashboard section-pad">
+<div class="dashboard-welcome">
+<div>
+<p class="eyebrow">PATIENT PORTAL</p>
+<h1>Welcome back, <span id="patientName">Patient</span>.</h1>
+<p>Manage your appointments and plan your next visit with confidence.</p>
+</div>
+<div class="date-card">
+<span id="todayDay">
+</span>
+<b id="todayDate">
+</b>
+<small id="todayMonth">
+</small>
+</div>
+</div>
+<section class="portal-summary">
+<article>
+<span class="summary-icon">◷</span>
+<div>
+<strong id="appointmentCount">0</strong>
+<small>Upcoming appointments</small>
+</div>
+</article>
+<article>
+<span class="summary-icon">♙</span>
+<div>
+<strong>3</strong>
+<small>Available specialists</small>
+</div>
+</article>
+<article>
+<span class="summary-icon">✓</span>
+<div>
+<strong>24/7</strong>
+<small>Online booking access</small>
+</div>
+</article>
+</section>
+<section class="booking-panel">
+<div class="booking-copy">
+<p class="eyebrow">NEW APPOINTMENT</p>
+<h2>Book your next visit.</h2>
+<p>Choose your preferred specialist and a convenient date and time. Your appointment will appear below once confirmed.</p>
+</div>
+<form id="appointmentForm" action="php/appointment.php" method="post" novalidate>
+<label for="doctor">Choose a specialist</label>
+<select id="doctor" name="doctor_id" required>
+<option value="">Select a doctor</option>
+<option value="1">Dr. Ananya Sharma — General Medicine</option>
+<option value="2">Dr. Rohan Mehta — Cardiology</option>
+<option value="3">Dr. Priya Nair — Pediatrics</option>
+</select>
+<label for="appointmentDate">Preferred date and time</label>
+<input id="appointmentDate" name="appointment_date" type="datetime-local" required>
+<label for="notes">Reason for visit <span>(optional)</span>
+</label>
+<textarea id="notes" name="notes" rows="3" placeholder="Tell the doctor anything helpful before your visit.">
+</textarea>
+<button class="button" type="submit">Confirm appointment <span>→</span>
+</button>
+<p class="form-status" aria-live="polite">
+</p>
+</form>
+</section>
+<section class="appointments-section">
+<div class="list-heading">
+<div>
+<p class="eyebrow">YOUR SCHEDULE</p>
+<h2>Upcoming appointments</h2>
+</div>
+<button id="refreshAppointments" class="outline-button" type="button">Refresh list</button>
+</div>
+<div id="appointments" class="appointment-list" aria-live="polite">
+<div class="empty-state">
+<span>📅</span>
+<h3>No upcoming appointments</h3>
+<p>Your scheduled visits will appear here after you book them.</p>
+</div>
+</div>
+</section>
+</main>
+<script src="js/script.js">
+</script>
+<script src="js/dashboard.js">
+</script>
+</body>
+</html>

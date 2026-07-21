@@ -1,2 +1,207 @@
-.dashboard{padding:60px 10%;max-width:1100px;margin:auto}.booking{display:flex;justify-content:space-between;gap:35px;align-items:center;padding:30px;margin:35px 0;background:#eaf6f6;border-radius:8px}.booking form{display:grid;grid-template-columns:1.3fr 1fr auto;gap:10px;flex:1}.appointment-list{background:#fff;border:1px solid #e0ebeb;padding:20px;border-radius:7px}.appointment-list article{padding:12px 0;border-bottom:1px solid #e6eeee}.appointment-list article:last-child{border:0}.appointment-list span,.appointment-list small{color:var(--muted)}@media(max-width:700px){.booking,.booking form{display:block}.booking form>*{margin-top:12px}}
-.dashboard{padding:60px 10%;max-width:1100px;margin:auto}.booking{display:flex;justify-content:space-between;gap:35px;align-items:center;padding:30px;margin:35px 0;background:#eaf6f6;border-radius:8px}.booking form{display:grid;grid-template-columns:1.3fr 1fr auto;gap:10px;flex:1}.appointment-list{background:#fff;border:1px solid #e0ebeb;padding:20px;border-radius:7px}.appointment-list article{padding:12px 0;border-bottom:1px solid #e6eeee}.appointment-list article:last-child{border:0}.appointment-list span,.appointment-list small{color:var(--muted)}@media(max-width:700px){.booking,.booking form{display:block}.booking form>*{margin-top:12px}}
+.dashboard { max-width:1220px;
+margin:auto;
+padding-top:58px;
+padding-bottom:85px;
+}
+.dashboard-welcome { display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px;
+}
+.dashboard-welcome h1 { margin-bottom:6px;
+font-size:47px;
+}
+.dashboard-welcome p:last-child { color:var(--muted);
+}
+.date-card { display:grid;
+min-width:100px;
+place-items:center;
+padding:12px 17px;
+border-radius:9px;
+background:#e6f5f4;
+color:var(--brand-dark);
+text-align:center;
+}
+.date-card span,.date-card small { font-size:11px;
+font-weight:bold;
+}
+.date-card b { font-family:Georgia,serif;
+font-size:30px;
+line-height:1.1;
+}
+.portal-summary { display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:19px;
+margin:32px 0;
+}
+.portal-summary article { display:flex;
+gap:15px;
+align-items:center;
+padding:21px;
+border:1px solid var(--line);
+border-radius:10px;
+background:#fff;
+}
+.summary-icon { display:grid;
+width:43px;
+height:43px;
+place-items:center;
+border-radius:9px;
+background:var(--accent);
+color:var(--brand);
+font-size:22px;
+}
+.portal-summary strong,.portal-summary small { display:block;
+}
+.portal-summary strong { font-size:25px;
+line-height:1.1;
+}
+.portal-summary small { color:var(--muted);
+font-size:12px;
+}
+.booking-panel { display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:47px;
+padding:37px;
+border-radius:12px;
+background:#e6f5f4;
+}
+.booking-copy p:not(.eyebrow) { color:var(--muted);
+}
+.booking-panel h2 { font-size:32px;
+}
+.booking-panel form { display:grid;
+grid-template-columns:1fr 1fr;
+gap:0 13px;
+}
+.booking-panel label { grid-column:span 2;
+margin:0 0 5px;
+color:#355662;
+font-size:12px;
+font-weight:bold;
+}
+.booking-panel select,.booking-panel input,.booking-panel textarea { grid-column:span 2;
+width:100%;
+margin:0 0 17px;
+padding:11px;
+border:1px solid #c8dddd;
+border-radius:6px;
+background:#fff;
+font:inherit;
+}
+.booking-panel textarea { resize:vertical;
+}
+.booking-panel label span { color:var(--muted);
+font-weight:normal;
+}
+.booking-panel .button { justify-self:start;
+}
+.appointments-section { margin-top:60px;
+}
+.list-heading { display:flex;
+align-items:end;
+justify-content:space-between;
+gap:20px;
+margin-bottom:18px;
+}
+.list-heading h2 { margin:0;
+font-size:32px;
+}
+.outline-button { border:1px solid var(--brand);
+border-radius:6px;
+padding:9px 13px;
+color:var(--brand);
+background:#fff;
+font:inherit;
+font-size:13px;
+font-weight:bold;
+cursor:pointer;
+}
+.appointment-list { overflow:hidden;
+border:1px solid var(--line);
+border-radius:10px;
+background:#fff;
+}
+.appointment-item { display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+padding:21px;
+border-bottom:1px solid var(--line);
+}
+.appointment-item:last-child { border:0;
+}
+.appointment-main { display:flex;
+gap:14px;
+align-items:center;
+}
+.appointment-avatar { display:grid;
+width:45px;
+height:45px;
+place-items:center;
+border-radius:50%;
+background:var(--accent);
+color:var(--brand);
+font-weight:bold;
+}
+.appointment-item h3 { margin:0 0 2px;
+font-size:18px;
+}
+.appointment-item p { margin:0;
+color:var(--muted);
+font-size:13px;
+}
+.appointment-time { color:var(--brand-dark);
+font-size:13px;
+font-weight:bold;
+text-align:right;
+}
+.status-pill { display:inline-block;
+margin-top:4px;
+padding:3px 7px;
+border-radius:12px;
+background:#dff4e9;
+color:var(--success);
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:.7px;
+}
+.empty-state { padding:49px 20px;
+color:var(--muted);
+text-align:center;
+}
+.empty-state span { font-size:30px;
+}
+.empty-state h3 { margin:8px 0 3px;
+color:var(--ink);
+}
+.empty-state p { margin:0;
+font-size:14px;
+}
+@media(max-width:800px){.dashboard{padding-top:38px}
+.dashboard-welcome h1{font-size:38px}
+.portal-summary,.booking-panel{grid-template-columns:1fr}
+.booking-panel{gap:20px;
+padding:25px}
+.dashboard-nav{display:flex!important;
+position:static!important;
+flex-direction:row!important;
+padding:0!important;
+border:0!important}
+.dashboard-nav a:first-child{display:none}
+}
+@media(max-width:520px){.dashboard-welcome{align-items:flex-start}
+.date-card{display:none}
+.portal-summary{gap:10px}
+.portal-summary article{padding:13px;
+gap:8px}
+.summary-icon{width:33px;
+height:33px;
+font-size:16px}
+.portal-summary strong{font-size:18px}
+.portal-summary small{font-size:10px}
+.appointment-item{align-items:flex-start;
+flex-direction:column}
+.appointment-time{text-align:left}
+.booking-panel .button{width:100%}
+}

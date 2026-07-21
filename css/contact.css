@@ -1,2 +1,79 @@
-.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;margin-top:45px}.contact form{background:#fff;padding:28px;border-radius:8px}.form-message{color:#19895d}@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:25px}}
-.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;margin-top:45px}.contact form{background:#fff;padding:28px;border-radius:8px}.form-message{color:#19895d}@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:25px}}
+.contact-hero { padding-top:78px;
+padding-bottom:74px;
+background:#eaf7f6;
+}
+.contact-hero h1 { margin-bottom:12px;
+}
+.contact-layout { display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:68px;
+padding-top:82px;
+padding-bottom:90px;
+}
+.contact-details>p { max-width:420px;
+color:var(--muted);
+}
+.contact-details article { display:flex;
+gap:14px;
+margin:28px 0;
+}
+.contact-details article>span { display:grid;
+width:38px;
+height:38px;
+flex:0 0 38px;
+place-items:center;
+border-radius:8px;
+color:var(--brand);
+background:var(--accent);
+}
+.contact-details h3 { margin:0;
+font-family:Arial,sans-serif;
+font-size:15px;
+}
+.contact-details a,.contact-details p { margin:0;
+color:var(--muted);
+font-size:14px;
+}
+.contact-details a { color:var(--brand);
+font-weight:bold;
+}
+.contact-details small { display:block;
+color:var(--muted);
+font-size:12px;
+}
+.contact-form { padding:34px;
+border-radius:12px;
+background:#fff;
+box-shadow:var(--shadow);
+}
+.contact-form h2 { font-size:31px;
+}
+.contact-form label { display:block;
+margin:16px 0 6px;
+color:#345561;
+font-size:13px;
+font-weight:bold;
+}
+.contact-form input,.contact-form select,.contact-form textarea { width:100%;
+padding:12px;
+border:1px solid #cddcde;
+border-radius:6px;
+font:inherit;
+}
+.contact-form textarea { resize:vertical;
+}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus { outline:0;
+border-color:var(--brand);
+box-shadow:0 0 0 3px #dff3f3;
+}
+.contact-form .button { margin-top:20px;
+}
+@media(max-width:800px){.contact-layout{grid-template-columns:1fr;
+gap:30px;
+padding-top:58px;
+padding-bottom:65px}
+.contact-hero{padding-top:55px;
+padding-bottom:50px}
+}
+@media(max-width:480px){.contact-form{padding:25px 20px}
+}

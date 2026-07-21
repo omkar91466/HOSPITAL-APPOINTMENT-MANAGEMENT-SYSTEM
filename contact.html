@@ -1,1 +1,114 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact CarePoint</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/contact.css"></head><body><header><a class="brand" href="index.html"><span>✚</span> CarePoint</a><nav><a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="contact.html">Contact</a><a class="nav-login" href="login.html">Patient login</a></nav><button class="menu">☰</button></header><main class="page contact"><p class="eyebrow">GET IN TOUCH</p><h1>How can we help?</h1><div class="contact-grid"><section><h2>We're here for you.</h2><p>For questions about appointments or care, send a message and our team will respond shortly.</p><p><b>Call us</b><br>+91 1800 123 4567</p><p><b>Visit us</b><br>123 Health Avenue, Pune, Maharashtra</p></section><form id="contactForm"><label>Name<input required name="name" placeholder="Your name"></label><label>Email<input required type="email" name="email" placeholder="you@example.com"></label><label>Message<textarea required name="message" rows="5" placeholder="How can we help?"></textarea></label><button class="button">Send message</button><p class="form-message"></p></form></div></main><footer>© 2026 CarePoint Health.</footer><script src="js/contact.js"></script><script src="js/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Contact CarePoint Health.">
+<title>Contact CarePoint</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="index.html">
+<img src="images/logo.png" alt="">
+<span>CarePoint</span>
+</a>
+<button class="menu" type="button" aria-expanded="false" aria-controls="site-navigation">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="site-navigation">
+<a href="index.html">Home</a>
+<a href="about.html">About us</a>
+<a class="active" href="contact.html">Contact</a>
+<a class="nav-login" href="login.html">Patient login</a>
+</nav>
+</header>
+<main>
+<section class="contact-hero section-pad">
+<p class="eyebrow">GET IN TOUCH</p>
+<h1>How can we help?</h1>
+<p class="lead">Whether you have a question about your care or need help booking, our friendly team is ready to assist.</p>
+</section>
+<section class="contact-layout section-pad">
+<aside class="contact-details">
+<h2>We’re here for you.</h2>
+<p>Reach out using the details below, or send us a message and we will get back to you shortly.</p>
+<article>
+<span>☎</span>
+<div>
+<h3>Call us</h3>
+<a href="tel:+9118001234567">+91 1800 123 4567</a>
+<small>Monday–Saturday, 8:00 AM–8:00 PM</small>
+</div>
+</article>
+<article>
+<span>⌖</span>
+<div>
+<h3>Visit us</h3>
+<p>123 Health Avenue, Pune,<br>Maharashtra 411001</p>
+</div>
+</article>
+<article>
+<span>✉</span>
+<div>
+<h3>Email us</h3>
+<a href="mailto:care@carepoint.example">care@carepoint.example</a>
+</div>
+</article>
+</aside>
+<form id="contactForm" class="contact-form" novalidate>
+<p class="eyebrow">SEND A MESSAGE</p>
+<h2>Tell us how we can help.</h2>
+<label for="contactName">Your name</label>
+<input id="contactName" name="name" required placeholder="Your full name">
+<label for="contactEmail">Email address</label>
+<input id="contactEmail" name="email" type="email" required placeholder="you@example.com">
+<label for="contactSubject">Subject</label>
+<select id="contactSubject" name="subject" required>
+<option value="">Choose a topic</option>
+<option>Appointment help</option>
+<option>General enquiry</option>
+<option>Feedback</option>
+</select>
+<label for="contactMessage">Message</label>
+<textarea id="contactMessage" name="message" rows="5" required placeholder="How can we help?">
+</textarea>
+<button class="button" type="submit">Send message <span>→</span>
+</button>
+<p class="form-status" aria-live="polite">
+</p>
+</form>
+</section>
+</main>
+<footer class="site-footer">
+<div>
+<a class="brand" href="index.html">
+<img src="images/logo.png" alt="">
+<span>CarePoint</span>
+</a>
+<p>Better care begins with a better experience.</p>
+</div>
+<div>
+<h4>CarePoint</h4>
+<a href="about.html">About us</a>
+<a href="index.html#services">Services</a>
+</div>
+<div>
+<h4>Patients</h4>
+<a href="login.html">Patient login</a>
+<a href="login.html#register">Create account</a>
+</div>
+<p class="copyright">© 2026 CarePoint Health. All rights reserved.</p>
+</footer>
+<script src="js/script.js">
+</script>
+<script src="js/contact.js">
+</script>
+</body>
+</html>

@@ -1,7 +1,22 @@
 <?php
-require 'db.php'; session_start();
-if($_SERVER['REQUEST_METHOD']!=='POST') exit;
-$name=trim($_POST['name']??''); $email=filter_var($_POST['email']??'',FILTER_VALIDATE_EMAIL); $password=$_POST['password']??'';
-if(!$name||!$email||strlen($password)<6) exit('Please provide a name, valid email, and a password of at least 6 characters.');
-try{$stmt=$pdo->prepare('INSERT INTO users (name,email,password) VALUES (?,?,?)');$stmt->execute([$name,$email,password_hash($password,PASSWORD_DEFAULT)]);$_SESSION['user_id']=$pdo->lastInsertId();$_SESSION['name']=$name;header('Location: ../dashboard.html?name='.urlencode($name));}catch(PDOException $e){exit('An account with this email may already exist.');}
+require __DIR__ . '/db.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') redirect_to('../login.html');
+
+$name = trim($_POST['name'] ?? '');
+$email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+$password = $_POST['password'] ?? '';
+
+if (mb_strlen($name) < 2 || !$email || strlen($password) < 6) redirect_to('../login.html#register', 'Please enter a name, valid email, and password with at least 6 characters.');
+
+try { $statement = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+$statement->execute(['name' => $name, 'email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
+session_regenerate_id(true);
+$_SESSION['user_id'] = (int) $pdo->lastInsertId();
+$_SESSION['name'] = $name;
+redirect_to('../dashboard.html?name=' . urlencode($name));
+}
+catch (PDOException $exception) { redirect_to('../login.html#register', 'An account with this email address already exists.');
+}
 ?>

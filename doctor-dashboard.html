@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CarePoint doctor dashboard.">
+  <title>Doctor dashboard | CarePoint</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doctor-dashboard.css">
+</head>
+<body class="doctor-page">
+  <header class="doctor-topbar">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt=""><span>CarePoint</span></a>
+    <div class="doctor-topbar-actions">
+      <a href="index.html">View website</a>
+      <a href="php/doctor-logout.php">Sign out</a>
+      <div class="doctor-avatar" id="doctorAvatar">DR</div>
+    </div>
+  </header>
+  <div class="doctor-layout">
+    <aside class="doctor-sidebar">
+      <p class="doctor-sidebar-label">DOCTOR PORTAL</p>
+      <nav class="doctor-sidebar-nav" aria-label="Doctor navigation">
+        <a class="active" href="#overview"><span>▦</span> Overview</a>
+        <a href="#appointments"><span>◷</span> Appointments</a>
+        <a href="#patients"><span>♧</span> Patients</a>
+      </nav>
+      <div class="doctor-sidebar-info">
+        <strong>Need assistance?</strong>
+        <p>Contact system support for account and help desk access.</p>
+        <a href="contact.html" style="color:#818cf8;font-weight:bold;font-size:12px;text-decoration:none;">Contact support →</a>
+      </div>
+    </aside>
+    <main class="doctor-content" id="overview">
+      <div class="doctor-heading">
+        <div>
+          <p class="eyebrow">DOCTOR DASHBOARD</p>
+          <h1>Good morning, <span id="doctorName">Doctor</span>.</h1>
+          <p>Here is your practice overview for today.</p>
+        </div>
+      </div>
+
+      <!-- Doctor Profile Card -->
+      <div class="doctor-profile-card">
+        <div class="doctor-profile-avatar" id="doctorAvatar">DR</div>
+        <div class="doctor-profile-info">
+          <h2 id="doctorName">Dr. Name</h2>
+          <p id="doctorSpecialty">Specialty</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <section class="doctor-stats" aria-label="Dashboard statistics">
+        <article>
+          <span class="doctor-stat-icon blue">◷</span>
+          <div>
+            <small>Today's appointments</small>
+            <strong id="todayAppointments">0</strong>
+            <em>Scheduled for today</em>
+          </div>
+        </article>
+        <article>
+          <span class="doctor-stat-icon green">♧</span>
+          <div>
+            <small>Total patients</small>
+            <strong id="totalPatients">0</strong>
+            <em>Assigned to you</em>
+          </div>
+        </article>
+        <article>
+          <span class="doctor-stat-icon purple">✓</span>
+          <div>
+            <small>Completed visits</small>
+            <strong id="completedCount">0</strong>
+            <em>All time</em>
+          </div>
+        </article>
+      </section>
+
+      <!-- Appointments Table -->
+      <section class="doctor-panel" id="appointments">
+        <div class="doctor-panel-heading">
+          <div>
+            <p class="eyebrow">APPOINTMENTS</p>
+            <h2>Patient schedule</h2>
+          </div>
+          <div class="doctor-table-tools">
+            <input id="doctorAppointmentSearch" type="search" placeholder="Search patient name or email">
+            <select id="doctorStatusFilter">
+              <option value="all">All statuses</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div class="doctor-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Date & time</th>
+                <th>Notes</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="doctorAppointmentRows"></tbody>
+          </table>
+        </div>
+        <p class="doctor-message" id="doctorMessage" aria-live="polite">Loading appointments…</p>
+      </section>
+    </main>
+  </div>
+  <script src="js/doctor-dashboard.js"></script>
+</body>
+</html>
+

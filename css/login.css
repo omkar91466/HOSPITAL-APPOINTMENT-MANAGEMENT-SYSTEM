@@ -90,7 +90,6 @@ color:var(--muted);
 font-size:14px;
 text-align:center;
 }
-.auth-page > .theme-toggle { position:fixed; top:28px; right:max(7%,30px); z-index:5; }
 .forgot-link { margin:8px 0 -4px; text-align:right; font-size:12px; }
 .forgot-link a { color:var(--brand); font-weight:bold; }
 .auth-switch a { color:var(--brand);

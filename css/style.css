@@ -56,9 +56,7 @@ height:31px;
 object-fit:contain;
 border-radius:7px;
 }
-.theme-toggle { border:1px solid var(--line); border-radius:18px; padding:6px 11px; background:var(--surface); color:var(--ink); font-size:12px; font-weight:bold; cursor:pointer; }
-.theme-toggle:hover { border-color:var(--brand); color:var(--brand); }
-nav { display:flex;
+nav {
 align-items:center;
 gap:27px;
 }
@@ -386,11 +384,7 @@ flex-direction:column;
 @media (max-width:480px) { .section-pad { padding-left:22px;
 padding-right:22px;
 }
-.dark-mode { --ink:#e7f4f5; --brand:#50bdca; --brand-dark:#123f50; --accent:#193e4a; --surface:#163340; --page:#102733; --muted:#b3cbd0; --line:#315361; background:var(--page); color:var(--ink); }
-.dark-mode .site-header, .dark-mode .card, .dark-mode .doctor-card, .dark-mode .contact-form, .dark-mode .auth-panel, .dark-mode .appointment-list, .dark-mode .portal-summary article { background:var(--surface); }
-.dark-mode .hero, .dark-mode .about-hero, .dark-mode .contact-hero, .dark-mode .booking-panel { background:#173b47; }
-.dark-mode .site-footer { background:#091d27; }
-.dark-mode input, .dark-mode select, .dark-mode textarea { background:#0f2a35; color:var(--ink); border-color:var(--line); }
+
 .hero { padding-top:45px;
 padding-bottom:55px;
 }

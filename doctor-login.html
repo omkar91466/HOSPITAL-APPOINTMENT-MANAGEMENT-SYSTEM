@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sign in to your CarePoint doctor portal.">
+<title>Doctor portal | CarePoint</title>
+<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/doctor-login.css?v=2">
+</head>
+<body class="doctor-auth-page">
+<a class="brand doctor-auth-brand" href="index.html">
+<img src="images/logo.png" alt="">
+<span>CarePoint</span>
+</a>
+<main class="doctor-auth-layout">
+<section class="doctor-auth-intro">
+<p class="eyebrow">STAFF PORTAL</p>
+<h1>Your practice, streamlined.</h1>
+<p>Sign in to access your schedule, manage appointments, and stay connected with your patients.</p>
+<ul>
+<li><span>✓</span> View your daily appointment schedule</li>
+<li><span>✓</span> Manage patient visits efficiently</li>
+<li><span>✓</span> Update appointment statuses in real time</li>
+</ul>
+</section>
+<section class="doctor-auth-panel">
+<div id="doctorLoginPanel">
+<p class="eyebrow">WELCOME BACK</p>
+<h2>Doctor sign in</h2>
+<p class="doctor-panel-copy">Enter your registered email and password to access your portal.</p>
+<form id="doctorLoginForm" action="php/doctor-login.php" method="post" novalidate>
+<label for="doctorEmail">Email address</label>
+<input id="doctorEmail" name="email" type="email" autocomplete="email" required placeholder="you@carepoint.com">
+<label for="doctorPassword">Password</label>
+<div class="doctor-password-field">
+<input id="doctorPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+<button class="doctor-toggle-password" type="button" data-target="doctorPassword">Show</button>
+</div>
+<button class="button" type="submit">Sign in <span>→</span></button>
+<p class="form-status" aria-live="polite"></p>
+</form>
+<p class="doctor-auth-switch">Return to <a href="login.html">patient portal</a></p>
+<p class="doctor-back-link">Need help? <a href="contact.html">Contact support</a></p>
+</div>
+<p class="doctor-secure-note">🔒 Your information is protected with secure account access.</p>
+</section>
+</main>
+<script src="js/script.js"></script>
+<script src="js/doctor-login.js"></script>
+</body>
+</html>
+

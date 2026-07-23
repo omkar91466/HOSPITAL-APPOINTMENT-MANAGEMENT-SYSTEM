@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const themeButton = document.querySelector('#adminThemeToggle');
-  const savedTheme = localStorage.getItem('carepoint-theme');
   const search = document.querySelector('#appointmentSearch');
   const filter = document.querySelector('#statusFilter');
   const rowsContainer = document.querySelector('#appointmentRows');
@@ -14,15 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const date = new Date(value.replace(' ', 'T'));
     return Number.isNaN(date.getTime()) ? value : date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
   };
-
-  if (savedTheme === 'dark') document.body.classList.add('dark-mode');
-  updateThemeLabel();
-
-  themeButton?.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('carepoint-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    updateThemeLabel();
-  });
 
   let rows = [];
 
@@ -105,12 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     catch (error) {
       if (adminMessage) adminMessage.textContent = error.message;
-    }
-  }
-
-  function updateThemeLabel() {
-    if (themeButton) {
-      themeButton.textContent = document.body.classList.contains('dark-mode') ? 'Light' : 'Dark';
     }
   }
 

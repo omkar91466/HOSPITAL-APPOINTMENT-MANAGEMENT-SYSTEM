@@ -64,20 +64,46 @@
 <h2>Book your next visit.</h2>
 <p>Choose your preferred specialist and a convenient date and time. Your appointment will appear below once confirmed.</p>
 </div>
-<form id="appointmentForm" action="php/appointment.php" method="post" novalidate>
-<label for="doctor">Choose a specialist</label>
+              <form id="appointmentForm" action="php/appointment.php" method="post" enctype="multipart/form-data" novalidate>
+<label for="patientNameField">Patient name</label>
+<input id="patientNameField" name="patient_name" type="text" readonly required>
+
+<label for="department">Department</label>
+<select id="department" name="department" required>
+<option value="">Select a department</option>
+</select>
+
+<label for="doctor">Doctor name</label>
 <select id="doctor" name="doctor_id" required>
 <option value="">Select a doctor</option>
-<option value="1">Dr. Ananya Sharma — General Medicine</option>
-<option value="2">Dr. Rohan Mehta — Cardiology</option>
-<option value="3">Dr. Priya Nair — Pediatrics</option>
 </select>
-<label for="appointmentDate">Preferred date and time</label>
-<input id="appointmentDate" name="appointment_date" type="datetime-local" required>
-<label for="notes">Reason for visit <span>(optional)</span>
-</label>
-<textarea id="notes" name="notes" rows="3" placeholder="Tell the doctor anything helpful before your visit.">
-</textarea>
+
+<label for="appointmentDate">Appointment date</label>
+<input id="appointmentDate" name="appointment_date" type="date" required>
+
+<label for="timeSlot">Time slot</label>
+<select id="timeSlot" name="time_slot" required>
+<option value="">Select a time slot</option>
+<option value="09:00">09:00 AM</option>
+<option value="09:30">09:30 AM</option>
+<option value="10:00">10:00 AM</option>
+<option value="10:30">10:30 AM</option>
+<option value="11:00">11:00 AM</option>
+<option value="11:30">11:30 AM</option>
+<option value="12:00">12:00 PM</option>
+<option value="14:00">02:00 PM</option>
+<option value="14:30">02:30 PM</option>
+<option value="15:00">03:00 PM</option>
+<option value="15:30">03:30 PM</option>
+<option value="16:00">04:00 PM</option>
+</select>
+
+<label for="notes">Reason for visit</label>
+<textarea id="notes" name="notes" rows="3" placeholder="Tell the doctor anything helpful before your visit."></textarea>
+
+<label for="reportUpload">Upload previous reports <span>(optional)</span></label>
+<input id="reportUpload" name="report" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
 <button class="button" type="submit">Confirm appointment <span>→</span>
 </button>
 <p class="form-status" aria-live="polite">

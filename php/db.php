@@ -26,10 +26,20 @@ function ensure_default_admin(PDO $pdo): void {
     ]);
 }
 
+function ensure_appointment_schema(PDO $pdo): void {
+    $statement = $pdo->query("SHOW COLUMNS FROM appointments LIKE 'report_path'");
+    if ($statement->fetch()) {
+        return;
+    }
+
+    $pdo->exec("ALTER TABLE appointments ADD COLUMN report_path VARCHAR(500) NULL AFTER status");
+}
+
 try {
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false]);
     ensure_user_schema($pdo);
     ensure_default_admin($pdo);
+    ensure_appointment_schema($pdo);
 }
 catch (PDOException $exception) {
     http_response_code(500);

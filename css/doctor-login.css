@@ -1,6 +1,6 @@
 .doctor-auth-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #eef2ff, #f0f7ff);
+    background: var(--page);
     font-family: Arial, Helvetica, sans-serif;
 }
 .doctor-auth-brand {
@@ -30,7 +30,7 @@
     margin: 29px 0 0;
     padding: 0;
     list-style: none;
-    color: #375662;
+    color: var(--hero-trust);
     font-weight: bold;
 }
 .doctor-auth-intro li {
@@ -42,14 +42,14 @@
     place-items: center;
     margin-right: 7px;
     border-radius: 50%;
-    background: #dff0f5;
-    color: #0d7289;
+    background: var(--accent);
+    color: var(--brand);
 }
 .doctor-auth-panel {
     padding: 38px;
-    border: 1px solid #d8e8e8;
+    border: 1px solid var(--line);
     border-radius: 12px;
-    background: #fff;
+    background: var(--card-bg);
     box-shadow: var(--shadow);
 }
 .doctor-auth-panel h2 {
@@ -64,23 +64,24 @@
 .doctor-auth-panel label {
     display: block;
     margin: 16px 0 6px;
-    color: #32525e;
+    color: var(--ink);
     font-size: 13px;
     font-weight: bold;
 }
 .doctor-auth-panel input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #cddcde;
+    border: 1px solid var(--line);
     border-radius: 6px;
     outline: none;
     font: inherit;
-    background: #fff;
+    background: var(--card-bg);
+    color: var(--ink);
     box-sizing: border-box;
 }
 .doctor-auth-panel input:focus {
-    border-color: #4f6ef7;
-    box-shadow: 0 0 0 3px #e0e7ff;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--accent);
 }
 .doctor-password-field {
     position: relative;
@@ -94,7 +95,7 @@
     top: 50%;
     border: 0;
     background: none;
-    color: #4f6ef7;
+    color: var(--brand);
     font-size: 12px;
     font-weight: bold;
     transform: translateY(-50%);
@@ -103,10 +104,10 @@
 .doctor-auth-panel .button {
     width: 100%;
     margin-top: 24px;
-    background: #4f6ef7;
+    background: var(--brand);
 }
 .doctor-auth-panel .button:hover {
-    background: #3b57d9;
+    background: var(--brand-dark);
 }
 .doctor-auth-switch {
     margin: 21px 0 0;
@@ -115,7 +116,7 @@
     text-align: center;
 }
 .doctor-auth-switch a {
-    color: #4f6ef7;
+    color: var(--brand);
     font-weight: bold;
 }
 .doctor-secure-note {
@@ -133,8 +134,8 @@
     margin-bottom: 16px;
     padding: 5px 11px;
     border-radius: 20px;
-    background: #eef2ff;
-    color: #4f6ef7;
+    background: var(--accent);
+    color: var(--brand);
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -154,6 +155,18 @@
 .hidden {
     display: none;
 }
+
+/* Dark mode overrides for doctor auth pages */
+body.dark-mode .doctor-auth-page {
+    background: var(--page);
+}
+body.dark-mode .doctor-auth-intro ul {
+    color: var(--hero-trust);
+}
+body.dark-mode .doctor-auth-intro li span {
+    background: var(--brand-dark);
+}
+
 @media (max-width: 800px) {
     .doctor-auth-layout {
         grid-template-columns: 1fr;

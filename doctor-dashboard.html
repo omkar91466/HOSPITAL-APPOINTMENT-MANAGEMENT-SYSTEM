@@ -16,6 +16,7 @@
       <a href="php/doctor-logout.php">Sign out</a>
       <div class="doctor-avatar" id="doctorAvatar">DR</div>
     </div>
+    <button class="dark-toggle" type="button" aria-label="Toggle dark mode" id="darkModeToggle">🌙</button>
   </header>
   <div class="doctor-layout">
     <aside class="doctor-sidebar">
@@ -42,9 +43,9 @@
 
       <!-- Doctor Profile Card -->
       <div class="doctor-profile-card">
-        <div class="doctor-profile-avatar" id="doctorAvatar">DR</div>
+        <div class="doctor-profile-avatar" id="doctorProfileAvatar">DR</div>
         <div class="doctor-profile-info">
-          <h2 id="doctorName">Dr. Name</h2>
+          <h2 id="doctorProfileName">Dr. Name</h2>
           <p id="doctorSpecialty">Specialty</p>
         </div>
       </div>
@@ -110,8 +111,21 @@
         </div>
         <p class="doctor-message" id="doctorMessage" aria-live="polite">Loading appointments…</p>
       </section>
+
+      <!-- Patients Section -->
+      <section class="doctor-panel" id="patients">
+        <div class="doctor-panel-heading">
+          <div>
+            <p class="eyebrow">PATIENTS</p>
+            <h2>Your patients</h2>
+          </div>
+        </div>
+        <div id="doctorPatientsList" class="doctor-patients-grid"></div>
+        <p class="doctor-message" id="doctorPatientsMessage" aria-live="polite">Loading patients…</p>
+      </section>
     </main>
   </div>
+  <script src="js/script.js"></script>
   <script src="js/doctor-dashboard.js"></script>
 </body>
 </html>

@@ -1,33 +1,19 @@
-# Doctor Login & Dashboard + Enhanced Appointment Form + Dark Mode
+# Bug Fixes Progress
 
-## Steps
+## 🔴 Critical
 
-### Accessibility & Navigation
-- [x] Add "Staff login" link in header navigation of `index.html`
-- [x] Add "Staff login" link in footer of `index.html`
-- [x] Add "Staff? Sign in" link in hero area of `index.html`
-- [x] Make doctor portal link more prominent on `login.html`
+- [x] Bug 1: Patient login missing success message — `php/login.php` ✅ Added `'success'` type and welcome message to patient redirect
+- [x] Bug 2: Doctor modal "Book" link doesn't pre-select doctor — `js/login.js`, `js/dashboard.js`, `php/login.php` ✅ `doctor` URL param forwarded through login to dashboard
+- [x] Bug 3: Admin "Manage" button does nothing — New `php/admin-appointment-update.php` + `admin.js` ✅ Real Complete/Cancel buttons with backend
+- [x] Bug 4: Forgot password misleading success — `php/forgot-password.php` ✅ Changed message to "If that email is registered..."
+- [x] Bug 5: Dark mode broken on admin/doctor-dashboard CSS — `css/admin.css`, `css/doctor-dashboard.css` ✅ Replaced hardcoded `#fff` with `var(--card-bg)`, added dark mode overrides
+- [x] Bug 6: Patients can't see past appointments — `php/dashboard.php` ✅ Removed restrictive `status='scheduled'` filter, now shows all appointments
+- [x] Bug 7: Doctors can't see patient report uploads — `php/doctor-dashboard.php` + `js/doctor-dashboard.js` ✅ Added `a.report_path` to query and report link in table
+- [x] Bug 8: Registration missing `user_role` — `php/register.php` ✅ Added `$_SESSION['user_role'] = 'user'` + success message
 
-### Dark Mode
-- [x] Add dark mode toggle button to header
-- [x] Add CSS custom properties for dark mode themes
-- [x] Add dark mode JavaScript toggle with localStorage persistence
-- [x] Update dashboard CSS for dark mode compatibility
+## 🟡 Moderate
 
-### Enhanced Appointment Form
-- [x] **Patient Name (Auto-filled)** — Read-only input auto-filled from session
-- [x] **Department (Dropdown)** — Dynamic loading from backend (`php/get-doctors.php`)
-- [x] **Doctor Name (Dropdown)** — Filtered by selected department
-- [x] **Appointment Date (Date Picker)** — Date-only input with future-date validation
-- [x] **Time Slot (Dropdown)** — Predefined time slots from 9 AM to 4 PM
-- [x] **Reason for Visit (Textarea)** — Text area with notes
-- [x] **Upload Previous Reports (File Upload)** — Optional file with validation (PDF, JPG, PNG, DOC up to 5MB)
-
-### Backend
-- [x] `php/get-doctors.php` — API endpoint returning departments and doctors
-- [x] `php/appointment.php` — Updated to handle new fields, file upload, time slot validation, conflict check
-- [x] `php/db.php` — Auto-migration adds `report_path` column to appointments table
-- [x] `uploads/` directory auto-created
-
-## All steps completed! 🎉
+- [x] Bug 9: Date card hardcoded color — `css/dashboard.css` ✅ Changed to `var(--accent)`
+- [x] Bug 10: Admin sidebar/admin-topbar hardcoded colors — `css/admin.css` ✅ Dark mode overrides added
+- [x] Bug 11: Doctor sidebar & profile card hardcoded colors — `css/doctor-dashboard.css` ✅ Dark mode overrides added
 

@@ -32,7 +32,7 @@ if ($accountType === 'doctor') {
     $doctor = $stmt->fetch();
 
     if (!$doctor || !password_verify($password, $doctor['password'])) {
-        redirect_to('../login.html', 'The email or password is incorrect.');
+        redirect_to('../doctor-login.html', 'The email or password is incorrect.');
     }
 
     session_regenerate_id(true);
@@ -42,7 +42,7 @@ if ($accountType === 'doctor') {
     $_SESSION['doctor_email'] = $doctor['email'];
     $_SESSION['user_role'] = 'doctor';
 
-    redirect_to('../doctor-dashboard.html?name=' . urlencode($doctor['name']), 'Welcome back, Dr. ' . $doctor['name'] . '.');
+    redirect_to('../doctor-dashboard.html?name=' . urlencode($doctor['name']), 'Welcome back, Dr. ' . $doctor['name'] . '.', 'success');
 }
 
 // Handle patient / admin login
@@ -63,7 +63,14 @@ $_SESSION['user_id'] = (int) $user['id'];
 $_SESSION['name'] = $user['name'];
 $_SESSION['user_role'] = $userRole;
 
-if ($accountType === 'admin') redirect_to('../admin.html?name=' . urlencode($user['name']), 'Welcome back, admin.');
-redirect_to('../dashboard.html?name=' . urlencode($user['name']));
+    redirect_to('../admin.html?name=' . urlencode($user['name']), 'Welcome back, admin.', 'success');
+
+// Forward doctor_param to dashboard so it can pre-select the doctor
+$doctorParam = $_POST['doctor_param'] ?? '';
+$dashboardUrl = '../dashboard.html?name=' . urlencode($user['name']);
+if ($doctorParam) {
+    $dashboardUrl .= '&doctor=' . urlencode($doctorParam);
+}
+redirect_to($dashboardUrl, 'Welcome back, ' . $user['name'] . '.', 'success');
 
 ?>

@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS doctors (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 
 CREATE TABLE IF NOT EXISTS appointments (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, user_id INT UNSIGNED NOT NULL, doctor_id INT UNSIGNED NOT NULL, appointment_date DATETIME NOT NULL, notes VARCHAR(500) NULL, status ENUM('scheduled', 'completed', 'cancelled') NOT NULL DEFAULT 'scheduled', created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT fk_appointments_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, CONSTRAINT fk_appointments_doctor FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE RESTRICT, INDEX idx_appointment_schedule (user_id, appointment_date)) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS contact_messages (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(150) NOT NULL, subject VARCHAR(200) NOT NULL, message TEXT NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB;
+
 INSERT INTO doctors (id, name, specialty, email, password, experience_years) VALUES 
 (1, 'Dr. Ananya Sharma', 'General Medicine', 'ananya@carepoint.com', '$2y$10$ETFDXP9G4Kjt8bVb3ZOAOe3W5oZ.gFr2sKbUIYZLvM6HBcqg8jGMS', 12), 
 (2, 'Dr. Rohan Mehta', 'Cardiology', 'rohan@carepoint.com', '$2y$10$ETFDXP9G4Kjt8bVb3ZOAOe3W5oZ.gFr2sKbUIYZLvM6HBcqg8jGMS', 15), 

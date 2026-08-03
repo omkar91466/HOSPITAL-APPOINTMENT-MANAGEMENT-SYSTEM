@@ -15,7 +15,8 @@ $statement->execute(['name' => $name, 'email' => $email, 'password' => password_
 session_regenerate_id(true);
 $_SESSION['user_id'] = (int) $pdo->lastInsertId();
 $_SESSION['name'] = $name;
-redirect_to('../dashboard.html?name=' . urlencode($name));
+$_SESSION['user_role'] = 'user';
+redirect_to('../dashboard.html?name=' . urlencode($name), 'Welcome to CarePoint, ' . $name . '.', 'success');
 }
 catch (PDOException $exception) { redirect_to('../login.html#register', 'An account with this email address already exists.');
 }

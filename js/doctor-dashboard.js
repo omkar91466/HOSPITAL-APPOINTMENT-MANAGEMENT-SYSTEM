@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalPatients = document.querySelector('#totalPatients');
   const completedCount = document.querySelector('#completedCount');
   const doctorNameDisplay = document.querySelector('#doctorName');
+  const doctorProfileNameDisplay = document.querySelector('#doctorProfileName');
   const doctorSpecialtyDisplay = document.querySelector('#doctorSpecialty');
   const doctorAvatar = document.querySelector('#doctorAvatar');
+  const doctorProfileAvatar = document.querySelector('#doctorProfileAvatar');
 
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&': '&amp;', '<': '<', '>': '>', '"': '"', "'": '&#39;'}[character]));
   
@@ -22,6 +24,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const date = new Date(value.replace(' ', 'T'));
     return Number.isNaN(date.getTime()) ? value : date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
   };
+
+  // Patients display
+  const patientsContainer = document.querySelector('#doctorPatientsList');
+  const patientsMessage = document.querySelector('#doctorPatientsMessage');
+
+  function renderPatients(appointments) {
+    if (!patientsContainer) return;
+    
+    // Extract unique patients
+    const seen = new Set();
+    const uniquePatients = [];
+    appointments.forEach(a => {
+      if (!seen.has(a.patient_email)) {
+        seen.add(a.patient_email);
+        uniquePatients.push({
+          name: a.patient_name,
+          email: a.patient_email,
+          lastVisit: a.appointment_date,
+          status: a.status,
+        });
+      }
+    });
+
+    if (!uniquePatients.length) {
+      patientsContainer.innerHTML = '';
+      if (patientsMessage) patientsMessage.textContent = 'No patients yet.';
+      return;
+    }
+
+    if (patientsMessage) patientsMessage.textContent = '';
+    patientsContainer.innerHTML = uniquePatients.map(p => `
+      <div class="doctor-patient-card">
+        <div class="doctor-patient-avatar">${p.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div>
+        <div class="doctor-patient-info">
+          <strong>${escapeHtml(p.name)}</strong>
+          <small>${escapeHtml(p.email)}</small>
+        </div>
+      </div>
+    `).join('');
+  }
 
   let rows = [];
 
@@ -89,7 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (payload.doctor_name) {
         const initials = payload.doctor_name.split(' ').map(w => w[0]).join('').slice(0, 2);
         if (doctorAvatar) doctorAvatar.textContent = initials;
+        if (doctorProfileAvatar) doctorProfileAvatar.textContent = initials;
         if (doctorNameDisplay) doctorNameDisplay.textContent = payload.doctor_name;
+        if (doctorProfileNameDisplay) doctorProfileNameDisplay.textContent = payload.doctor_name;
       }
       if (doctorSpecialtyDisplay && payload.doctor_specialty) {
         doctorSpecialtyDisplay.textContent = payload.doctor_specialty;
@@ -107,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rowsContainer.innerHTML = '<tr><td colspan="5">No appointments found.</td></tr>';
         rows = [];
         doctorMessage.textContent = 'No appointments available.';
+        renderPatients([]);
         return;
       }
 
@@ -124,10 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
           actionButtons = `<span style="color:var(--muted);font-size:11px;">—</span>`;
         }
 
+        const reportLink = appointment.report_path
+          ? `<a href="${escapeHtml(appointment.report_path)}" target="_blank" style="color:var(--brand);font-weight:bold;font-size:11px;">📎 View report</a>`
+          : '—';
         row.innerHTML = `
           <td><strong>${escapeHtml(appointment.patient_name)}</strong><small>${escapeHtml(appointment.patient_email)}</small></td>
           <td>${escapeHtml(formatDate(appointment.appointment_date))}</td>
-          <td>${escapeHtml(appointment.notes || '—')}</td>
+          <td>${escapeHtml(appointment.notes || '—')}<br>${reportLink}</td>
           <td><span class="doctor-status ${escapeHtml(appointment.status)}">${escapeHtml(appointment.status)}</span></td>
           <td>${actionButtons}</td>
         `;
@@ -138,6 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
       filterRows();
       doctorMessage.textContent = '';
       doctorMessage.className = 'doctor-message';
+
+      // Render unique patients list
+      renderPatients(payload.appointments);
     } catch (error) {
       if (doctorMessage) {
         doctorMessage.className = 'doctor-message error';

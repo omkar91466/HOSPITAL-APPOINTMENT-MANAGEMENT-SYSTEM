@@ -13,6 +13,7 @@
 <img src="images/logo.png" alt="">
 <span>CarePoint</span>
 </a>
+<button class="dark-toggle" type="button" aria-label="Toggle dark mode" id="darkModeToggle">🌙</button>
 <main class="auth-layout">
 <section class="auth-intro">
 <p class="eyebrow">YOUR PATIENT PORTAL</p>
@@ -32,8 +33,7 @@
 <p class="eyebrow">WELCOME BACK</p>
 <h2>Sign in to your account</h2>
 <p class="panel-copy">Enter your details to continue to your patient portal.</p>
-<form id="loginForm" action="php/login.php" method="post" novalidate>
-<input type="hidden" name="account_type" value="user">
+                <form id="loginForm" action="php/login.php" method="post" novalidate>
 <label for="loginEmail">Email address</label>
 <input id="loginEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
 <label for="loginPassword">Password</label>

@@ -24,5 +24,5 @@ if ($statement->fetch()) {
     $updateStatement->execute(['password' => password_hash($newPassword, PASSWORD_DEFAULT), 'email' => $email]);
 }
 
-redirect_to('../login.html', 'Your password has been updated. Please sign in with your new password.');
+redirect_to('../login.html', 'If that email is registered, the password has been updated. Please sign in.', 'success');
 ?>

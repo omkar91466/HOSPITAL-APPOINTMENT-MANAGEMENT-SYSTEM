@@ -18,7 +18,7 @@ min-width:100px;
 place-items:center;
 padding:12px 17px;
 border-radius:9px;
-background:#e6f5f4;
+background:var(--accent);
 color:var(--brand-dark);
 text-align:center;
 }

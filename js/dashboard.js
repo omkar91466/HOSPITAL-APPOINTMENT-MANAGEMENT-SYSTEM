@@ -7,24 +7,45 @@
  * - Loads upcoming visits from php/dashboard.php
  */
 document.addEventListener('DOMContentLoaded', () => {
-  const name = new URLSearchParams(location.search).get('name');
   const nameElement = document.querySelector('#patientName');
   const patientNameField = document.querySelector('#patientNameField');
 
-  // Auto-fill patient name
-  if (name && nameElement) {
-    nameElement.textContent = name;
-  }
-  if (name && patientNameField) {
-    patientNameField.value = name;
+  // Auto-fill patient name — try URL param first, then fetch from session
+  function fillPatientName(name) {
+    if (name && nameElement) nameElement.textContent = name;
+    if (name && patientNameField) patientNameField.value = name;
   }
 
-  const message = new URLSearchParams(location.search).get('message');
+  const urlName = new URLSearchParams(location.search).get('name');
+  if (urlName) {
+    fillPatientName(urlName);
+  } else {
+    // On refresh or direct access, fetch name from session
+    fetch('php/get-current-user.php')
+      .then(r => {
+        if (!r.ok) throw new Error('Not authenticated');
+        return r.json();
+      })
+      .then(data => {
+        if (data.name) fillPatientName(data.name);
+      })
+      .catch(() => {
+        // Not logged in — leave field empty, form validation will prompt
+      });
+  }
+
+  const urlParams = new URLSearchParams(location.search);
+  const message = urlParams.get('message');
+  const messageType = urlParams.get('type');
   if (message) {
     const status = document.querySelector('#appointmentForm .form-status');
     status.textContent = message;
-    status.className = message.includes('confirmed') ? 'form-status' : 'form-status error';
+    status.className = messageType === 'success' ? 'form-status' : 'form-status error';
   }
+
+  // Pre-select doctor from URL param (forwarded from login after booking via doctor modal)
+  const doctorParam = urlParams.get('doctor');
+  let pendingDoctorId = doctorParam;
 
   // Today's date display
   const now = new Date();
@@ -34,16 +55,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set min date for date picker to today
   const dateInput = document.querySelector('#appointmentDate');
-  if (dateInput) {
-    const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-    dateInput.min = today.toISOString().slice(0, 10);
-  }
-
-  // ---- Dynamic Department & Doctor loading ----
+  const timeSlotSelect = document.querySelector('#timeSlot');
   const departmentSelect = document.querySelector('#department');
   const doctorSelect = document.querySelector('#doctor');
   let doctorsCache = [];
+  const timeSlotValues = ['09:00', '11:00', '13:00', '15:00'];
 
+  function showTimeSlotsFor(dateStr, doctorId) {
+    // First show all time slot options
+    timeSlotSelect.querySelectorAll('option[value]').forEach(opt => {
+      if (opt.value) opt.hidden = false;
+    });
+
+    if (!dateStr || !doctorId) return; // No filtering needed
+
+    const isToday = dateStr === new Date().toISOString().slice(0, 10);
+    const currentHour = new Date().getHours();
+    const currentMin = new Date().getMinutes();
+
+    // Hide past time slots if today
+    if (isToday) {
+      timeSlotSelect.querySelectorAll('option[value]').forEach(opt => {
+        if (!opt.value) return;
+        const [slotHour, slotMin] = opt.value.split(':').map(Number);
+        if (slotHour < currentHour || (slotHour === currentHour && slotMin <= currentMin)) {
+          opt.hidden = true;
+        }
+      });
+    }
+
+    // Fetch and hide already-booked slots
+    fetch(`php/get-booked-slots.php?doctor_id=${doctorId}&date=${dateStr}`)
+      .then(r => r.json())
+      .then(data => {
+        const bookedSlots = data.booked_slots || [];
+        timeSlotSelect.querySelectorAll('option[value]').forEach(opt => {
+          if (opt.value && bookedSlots.includes(opt.value)) {
+            opt.hidden = true;
+          }
+        });
+      })
+      .catch(() => {}); // Silently fail, options remain visible
+  }
+
+  if (dateInput) {
+    const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+    const todayStr = today.toISOString().slice(0, 10);
+    dateInput.min = todayStr;
+
+    dateInput.addEventListener('change', () => {
+      showTimeSlotsFor(dateInput.value, doctorSelect.value);
+    });
+  }
+
+  // ---- Dynamic Department & Doctor loading ----
   // Load departments & doctors
   async function loadDoctorsData() {
     try {
@@ -62,6 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Cache doctors
       doctorsCache = data.doctors;
+      // Populate doctor dropdown immediately with all doctors
+      filterDoctorsByDepartment(departmentSelect.value);
     } catch (error) {
       console.error('Failed to load doctors data:', error);
     }
@@ -77,13 +144,28 @@ document.addEventListener('DOMContentLoaded', () => {
     filtered.forEach(doc => {
       const option = document.createElement('option');
       option.value = doc.id;
-      option.textContent = `Dr. ${doc.name} — ${doc.specialty} (${doc.experience_years} yrs)`;
+      option.textContent = `${doc.name} — ${doc.specialty} (${doc.experience_years} yrs)`;
       doctorSelect.appendChild(option);
     });
+
+    // If there's a pending pre-selection, select it after populating
+    if (pendingDoctorId && filtered.some(doc => doc.id == pendingDoctorId)) {
+      doctorSelect.value = pendingDoctorId;
+      pendingDoctorId = null;
+      // Also trigger time slot refresh for this doctor
+      showTimeSlotsFor(dateInput?.value, doctorSelect.value);
+    }
   }
 
   departmentSelect.addEventListener('change', () => {
     filterDoctorsByDepartment(departmentSelect.value);
+    // Show all time slots (reset) since doctor changed
+    showTimeSlotsFor(dateInput?.value, '');
+  });
+
+  // Re-filter time slots when doctor selection changes
+  doctorSelect.addEventListener('change', () => {
+    showTimeSlotsFor(dateInput?.value, doctorSelect.value);
   });
 
   loadDoctorsData();

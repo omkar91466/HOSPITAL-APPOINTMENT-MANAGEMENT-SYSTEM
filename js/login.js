@@ -6,11 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   const message = new URLSearchParams(location.search).get('message');
+  const messageType = new URLSearchParams(location.search).get('type');
   const status = document.querySelector('.form-status');
   if (message && status) {
-    status.className = 'form-status error';
+    status.className = messageType === 'success' ? 'form-status' : 'form-status error';
     status.textContent = message;
   }
+
+  // Pre-select doctor from query param (from doctor modal "Book" button)
+  const doctorParam = new URLSearchParams(location.search).get('doctor');
+  if (doctorParam) {
+    const loginForm = document.querySelector('#loginForm');
+    if (loginForm) {
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'doctor_param';
+      hiddenInput.value = doctorParam;
+      loginForm.appendChild(hiddenInput);
+    }
+  }
+
   document.querySelectorAll('[data-show-panel]').forEach((link) => link.addEventListener('click', (event) => {
     event.preventDefault();
     showPanel(link.dataset.showPanel);

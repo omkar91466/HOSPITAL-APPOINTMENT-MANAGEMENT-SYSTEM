@@ -9,10 +9,12 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 
 
-function redirect_to(string $path, string $message = ''): void {
+function redirect_to(string $path, string $message = '', string $type = 'error'): void {
     $separator = str_contains($path, '?') ? '&' : '?';
 
-    header('Location: ' . $path . ($message ? $separator . 'message=' . urlencode($message) : ''));
+    $query = $message ? $separator . 'message=' . urlencode($message) . '&type=' . urlencode($type) : '';
+
+    header('Location: ' . $path . $query);
 
     exit;
 

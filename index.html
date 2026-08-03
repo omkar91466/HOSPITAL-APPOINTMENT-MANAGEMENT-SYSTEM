@@ -28,7 +28,7 @@
 <a href="#specialists">Doctors</a>
 <a href="about.html">About us</a>
 <a href="contact.html">Contact</a>
-<a class="nav-login" href="login.html">Patient login</a>
+<a class="nav-login" href="login.html">Login</a>
 </nav>
 </header>
 <main>
@@ -77,29 +77,53 @@
 </div>
 </section>
 <section id="services" class="section-pad">
-<div class="section-heading">
+<div class="section-heading reveal">
 <p class="eyebrow">HOW WE HELP</p>
 <h2>Healthcare, made easier.</h2>
 <p>Everything you need to plan your visit with confidence.</p>
 </div>
 <div class="feature-grid">
-<article class="card">
+<article class="card reveal">
 <div class="icon">◷</div>
 <h3>Easy scheduling</h3>
 <p>Browse available specialists and select a date and time that suits your routine.</p>
 <a href="login.html">Book a visit →</a>
 </article>
-<article class="card">
+<article class="card reveal">
 <div class="icon">⌁</div>
 <h3>Trusted specialists</h3>
 <p>Connect with experienced clinicians across primary care and specialist services.</p>
 <a href="#specialists">Meet our doctors →</a>
 </article>
-<article class="card">
+<article class="card reveal">
 <div class="icon">⌂</div>
 <h3>Care in one place</h3>
 <p>View upcoming appointments and manage your healthcare journey from your dashboard.</p>
 <a href="login.html">Open portal →</a>
+</article>
+</div>
+</section>
+<section class="section-pad process-section">
+<div class="section-heading reveal">
+<p class="eyebrow">YOUR EXPERIENCE</p>
+<h2>A smoother appointment journey.</h2>
+<p>From choosing a doctor to getting reminders, every step is designed to feel simple and stress-free.</p>
+</div>
+<div class="steps-grid">
+<article class="step-card reveal">
+<div class="step-number">01</div>
+<h3>Create your account</h3>
+<p>Register in minutes and access your personal health dashboard.</p>
+</article>
+<article class="step-card reveal">
+<div class="step-number">02</div>
+<h3>Choose your specialist</h3>
+<p>Explore doctors by specialty, experience, and availability.</p>
+</article>
+<article class="step-card reveal">
+<div class="step-number">03</div>
+<h3>Stay on track</h3>
+<p>Receive confirmation details and manage upcoming visits from one place.</p>
 </article>
 </div>
 </section>
@@ -109,7 +133,7 @@
 <h2>Specialists who listen.</h2>
 </div>
 <div class="doctor-grid">
-<article class="doctor-card">
+            <article class="doctor-card" data-id="1">
 <img src="images/doctor1.jpg" alt="Dr. Ananya Sharma">
 <div>
 <p>GENERAL MEDICINE</p>
@@ -117,7 +141,7 @@
 <span>12 years of experience</span>
 </div>
 </article>
-<article class="doctor-card">
+<article class="doctor-card" data-id="2">
 <img src="images/doctor2.jpg" alt="Dr. Rohan Mehta">
 <div>
 <p>CARDIOLOGY</p>
@@ -125,7 +149,7 @@
 <span>15 years of experience</span>
 </div>
 </article>
-<article class="doctor-card">
+<article class="doctor-card" data-id="3">
 <img src="images/doctor3.jpg" alt="Dr. Priya Nair">
 <div>
 <p>PEDIATRICS</p>
@@ -158,12 +182,30 @@
 <a href="contact.html">Contact</a>
 </div>
 <div>
-<h4>Patients</h4>
-<a href="login.html">Patient login</a>
+        <h4>Account</h4>
+<a href="login.html">Login</a>
 <a href="login.html#register">Create account</a>
 </div>
 <p class="copyright">© 2026 CarePoint Health. All rights reserved.</p>
 </footer>
+<div class="modal-overlay" id="doctorModal" aria-hidden="true">
+<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalDoctorName">
+<button class="modal-close" aria-label="Close profile">&times;</button>
+<div class="modal-body">
+<div class="modal-image">
+<img src="" alt="" id="modalDoctorImg">
+</div>
+<div class="modal-info">
+                <p class="modal-specialty" id="modalDoctorSpecialty"></p>
+<h3 id="modalDoctorName"></h3>
+<span class="modal-experience" id="modalDoctorExperience"></span>
+<p class="modal-description" id="modalDoctorDescription"></p>
+<p class="modal-email" id="modalDoctorEmail"></p>
+<a class="button" id="modalBookBtn" href="login.html">Book an appointment <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</div>
+</div>
 <script src="js/script.js">
 </script>
 </body>

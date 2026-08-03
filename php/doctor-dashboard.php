@@ -31,7 +31,7 @@ $patientCount = $patientsStmt->fetch();
 
 // Get all upcoming/scheduled appointments
 $appointmentsStmt = $pdo->prepare(
-    "SELECT a.id, a.appointment_date, a.notes, a.status, 
+    "SELECT a.id, a.appointment_date, a.notes, a.status, a.report_path,
             u.name AS patient_name, u.email AS patient_email
      FROM appointments a 
      INNER JOIN users u ON u.id = a.user_id 

@@ -105,8 +105,9 @@ try {
     ]);
 
     $message = 'Your appointment with ' . $doctor['name'] . ' on ' . $appointmentDateTime->format('M j, Y \a\t g:i A') . ' has been confirmed.';
-    redirect_to('../dashboard.html?name=' . urlencode($_SESSION['name']) . '&message=' . urlencode($message));
+    redirect_to('../dashboard.html', $message, 'success');
 } catch (PDOException $e) {
     redirect_to('../dashboard.html', 'Unable to book the appointment right now. Please try again.');
 }
+
 

@@ -7,9 +7,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Show error message from URL if present
   const message = new URLSearchParams(location.search).get('message');
+  const messageType = new URLSearchParams(location.search).get('type');
   const status = document.querySelector('.form-status');
   if (message && status) {
-    status.className = 'form-status error';
+    status.className = messageType === 'success' ? 'form-status' : 'form-status error';
     status.textContent = message;
   }
 

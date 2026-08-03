@@ -22,6 +22,7 @@
 <span>
 </span>
 </button>
+<button class="dark-toggle" type="button" aria-label="Toggle dark mode" id="darkModeToggle">🌙</button>
 <nav id="site-navigation">
 <a href="index.html">Home</a>
 <a href="about.html">About us</a>
@@ -62,7 +63,7 @@
 </div>
 </article>
 </aside>
-<form id="contactForm" class="contact-form" novalidate>
+<form id="contactForm" class="contact-form" action="php/contact.php" method="POST" novalidate>
 <p class="eyebrow">SEND A MESSAGE</p>
 <h2>Tell us how we can help.</h2>
 <label for="contactName">Your name</label>
@@ -77,8 +78,7 @@
 <option>Feedback</option>
 </select>
 <label for="contactMessage">Message</label>
-<textarea id="contactMessage" name="message" rows="5" required placeholder="How can we help?">
-</textarea>
+				<textarea id="contactMessage" name="message" rows="5" required placeholder="How can we help?"></textarea>
 <button class="button" type="submit">Send message <span>→</span>
 </button>
 <p class="form-status" aria-live="polite">

@@ -271,18 +271,48 @@ margin-bottom:34px;
 padding-bottom:86px;
 background:var(--card-bg);
 }
-.feature-grid,.doctor-grid,.values { display:grid;
+.feature-grid,.doctor-grid,.values,.steps-grid { display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:23px;
 }
-.card { padding:29px;
+.card,.step-card { padding:29px;
 border:1px solid var(--line);
 border-radius:10px;
 background:var(--card-bg);
 transition:transform .2s,box-shadow .2s;
 }
-.card:hover { transform:translateY(-5px);
+.card:hover,.step-card:hover { transform:translateY(-5px);
 box-shadow:var(--shadow);
+}
+.step-card {
+background:linear-gradient(135deg,var(--accent) 0%,var(--surface) 100%);
+}
+.step-number {
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:42px;
+height:42px;
+margin-bottom:16px;
+border-radius:999px;
+background:var(--brand);
+color:#fff;
+font-size:14px;
+font-weight:700;
+}
+.process-section {
+padding-top:86px;
+padding-bottom:86px;
+background:var(--page);
+}
+.reveal {
+opacity:0;
+transform:translateY(24px);
+transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible {
+opacity:1;
+transform:translateY(0);
 }
 .card p { min-height:77px;
 color:var(--muted);
@@ -309,6 +339,12 @@ padding-bottom:86px;
 border-radius:10px;
 background:var(--card-bg);
 box-shadow:0 7px 25px rgba(20,63,76,.08);
+cursor:pointer;
+transition:transform .3s ease, box-shadow .3s ease;
+}
+.doctor-card:hover {
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(20,63,76,.15);
 }
 .doctor-card img { width:100%;
 height:280px;
@@ -380,6 +416,140 @@ font-weight:700;
 }
 .form-status.error { color:#b33b3b;
 }
+/* ===== Doctor Profile Modal ===== */
+.modal-overlay {
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+z-index:999;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);
+opacity:0;
+visibility:hidden;
+transition:opacity .3s ease, visibility .3s ease;
+padding:20px;
+}
+.modal-overlay.active {
+opacity:1;
+visibility:visible;
+}
+.modal-content {
+position:relative;
+max-width:640px;
+width:100%;
+max-height:90vh;
+overflow-y:auto;
+background:var(--card-bg);
+border-radius:14px;
+box-shadow:0 30px 60px rgba(0,0,0,.25);
+transform:scale(.93) translateY(20px);
+transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.active .modal-content {
+transform:scale(1) translateY(0);
+}
+.modal-close {
+position:absolute;
+top:12px;
+right:16px;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+background:var(--accent);
+color:var(--ink);
+font-size:22px;
+line-height:1;
+cursor:pointer;
+display:grid;
+place-items:center;
+transition:background .2s, transform .2s;
+z-index:2;
+}
+.modal-close:hover {
+background:var(--line);
+transform:rotate(90deg);
+}
+.modal-body {
+display:grid;
+grid-template-columns:1fr 1.1fr;
+gap:0;
+}
+.modal-image {
+overflow:hidden;
+border-radius:14px 0 0 14px;
+min-height:280px;
+}
+.modal-image img {
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center top;
+display:block;
+}
+.modal-info {
+padding:32px 28px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+.modal-specialty {
+margin:0 0 6px;
+color:var(--brand);
+font-size:10px;
+font-weight:800;
+letter-spacing:1.5px;
+}
+.modal-info h3 {
+margin:0 0 4px;
+font-size:26px;
+font-family:Georgia, 'Times New Roman', serif;
+}
+.modal-experience {
+display:block;
+margin-bottom:10px;
+color:var(--muted);
+font-size:14px;
+}
+.modal-description {
+margin:0 0 14px;
+color:var(--muted);
+font-size:14px;
+line-height:1.7;
+}
+.modal-email {
+margin:0 0 18px;
+color:var(--muted);
+font-size:14px;
+}
+.modal-info .button {
+align-self:flex-start;
+}
+@media (max-width:600px) {
+.modal-body {
+grid-template-columns:1fr;
+}
+.modal-image {
+border-radius:14px 14px 0 0;
+min-height:200px;
+max-height:240px;
+}
+.modal-image img {
+border-radius:14px 14px 0 0;
+}
+.modal-info {
+padding:24px 20px;
+}
+.modal-info h3 {
+font-size:22px;
+}
+}
+
 @media (max-width:800px) { .site-header { min-height:68px;
 }
 .menu { display:block;
@@ -419,7 +589,7 @@ padding-top:58px;
 .stats div:nth-child(-n+2) { border-bottom:1px solid rgba(255,255,255,.22);
 padding-bottom:16px;
 }
-.feature-grid,.doctor-grid,.values { grid-template-columns:1fr;
+.feature-grid,.doctor-grid,.values,.steps-grid { grid-template-columns:1fr;
 }
 .card p { min-height:auto;
 }

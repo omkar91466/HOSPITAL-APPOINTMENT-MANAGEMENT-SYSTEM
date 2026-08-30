@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const rowsContainer = document.querySelector('#appointmentRows');
   const adminMessage = document.querySelector('#adminMessage');
   const todayAppointments = document.querySelector('#todayAppointments');
-  const createAdminForm = document.querySelector('#createAdminForm');
-  const createAdminMessage = document.querySelector('#createAdminMessage');
 
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character]));
   const formatDate = (value) => {
@@ -67,26 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#addAppointment')?.addEventListener('click', () => {
     adminMessage.textContent = 'Use the patient dashboard to create a new appointment request.';
     document.querySelector('#appointments').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  createAdminForm?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const formData = new FormData(createAdminForm);
-    createAdminMessage.textContent = 'Creating admin account...';
-
-    try {
-      const response = await fetch('php/create-admin.php', {
-        method: 'POST',
-        body: formData,
-      });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || 'Unable to create admin account.');
-      createAdminMessage.textContent = payload.message || 'Admin account created.';
-      createAdminForm.reset();
-    }
-    catch (error) {
-      createAdminMessage.textContent = error.message;
-    }
   });
 
   async function loadAppointments() {
